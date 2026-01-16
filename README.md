@@ -2,7 +2,7 @@
 
 A local markdown editor with live preview and DOCX export, designed for AI-assisted document editing.
 
-Edit markdown files with your favorite AI coding assistant (Claude Code, Cursor, GitHub Copilot, etc.) and see changes instantly in your browser. Export to professionally-formatted Word documents when ready.
+Edit markdown files with your favorite AI coding assistant (Claude Code, Cursor, GitHub Copilot, etc.) and see changes instantly in your browser. Export to properly formatted Word documents when ready for upload to Google Docs or viewing in Word.
 
 ## Features
 
