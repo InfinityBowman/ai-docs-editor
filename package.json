@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@fastify/cors": "^11.2.0",
+    "@fastify/multipart": "^9.3.0",
     "@fastify/static": "^9.0.0",
     "@fastify/websocket": "^11.2.0",
     "@tailwindcss/vite": "^4.1.18",

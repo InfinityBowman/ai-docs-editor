@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import DocumentSwitcher from './components/DocumentSwitcher';
 import Preview from './components/Preview';
 import ExportButton from './components/ExportButton';
+import ImportButton from './components/ImportButton';
 
 function App() {
   const [files, setFiles] = useState([]);
@@ -86,6 +87,11 @@ function App() {
           <h1 className="text-xl font-semibold text-gray-900">AI Docs Editor</h1>
           <div className="flex items-center gap-4">
             <DocumentSwitcher files={files} activeFile={activeFile} onSelect={setActiveFile} />
+            <ImportButton
+              onImport={(fileName) => {
+                fetchFiles().then(() => setActiveFile(fileName));
+              }}
+            />
             <ExportButton activeFile={activeFile} />
           </div>
         </div>
