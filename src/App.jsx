@@ -6,10 +6,20 @@ import ImportButton from './components/ImportButton';
 
 function App() {
   const [files, setFiles] = useState([]);
-  const [activeFile, setActiveFile] = useState(null);
+  const [activeFile, setActiveFile] = useState(() => {
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    return hash || null;
+  });
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Sync activeFile to URL hash
+  useEffect(() => {
+    if (activeFile) {
+      window.location.hash = encodeURIComponent(activeFile);
+    }
+  }, [activeFile]);
 
   const fetchFiles = useCallback(async () => {
     try {
@@ -17,7 +27,9 @@ function App() {
       const data = await response.json();
       setFiles(data.files);
       if (data.files.length > 0 && !activeFile) {
-        setActiveFile(data.files[0]);
+        const hash = decodeURIComponent(window.location.hash.slice(1));
+        const initial = hash && data.files.includes(hash) ? hash : data.files[0];
+        setActiveFile(initial);
       }
     } catch (err) {
       setError('Failed to fetch files');
@@ -93,6 +105,7 @@ function App() {
               }}
             />
             <ExportButton activeFile={activeFile} />
+            <ExportButton activeFile={activeFile} format="pdf" />
           </div>
         </div>
       </header>
